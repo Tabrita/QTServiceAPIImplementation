@@ -1,0 +1,61 @@
+﻿@model ISWAPIImplementation.ViewModels.BillerViewModel
+@{
+    ViewData["Title"] = "GetBillersAsync";
+}
+
+<h1>All Billers</h1>
+
+<div class="card-columns">
+    @foreach (var item in Model.PaginatedBillers())
+    {
+        <div class="card mb-3" id="box" style="max-width: 380px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <a asp-action="GetBillerPaymentItems" asp-controller="Home" asp-route-id="@item.BillerId" class="divLink">
+                        <img src="@Url.Content("https://quickteller.sandbox.interswitchng.com/Content/Images/Downloaded/"+item.mediumImageId + ".png")" class="card-img">
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h6 class="card-title" style="line-height:0">@item.BillerName</h6>
+                        <p class="card-text">@item.Narration</p>
+                        <p class="card-text" style="line-height:0"><small class="text-muted">@item.CategoryName</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="card" style="width:10rem;">
+                <img src="@Url.Content("https://quickteller.sandbox.interswitchng.com/Content/Images/Downloaded/"+item.mediumImageId + ".png")" class="card-img" />
+
+                <div class="card-body">
+                    <h6 class="card-title">@item.BillerName</h6>
+                </div>
+
+                <div class="card-footer border-success">
+                    <a asp-action=""
+                    <small>@item.CategoryName</small>
+                </div>
+
+            </div>*@
+    }
+</div>
+
+<ul class="pagination">
+
+    <li class="@(Model.CurrentPage == 1 ? "page-item disabled" : "page-item active")">
+        <a class="page-link" href="@Url.Action("GetBillersAsync","Home", new { page = Model.CurrentPage - 1 })">Previous</a>
+    </li>
+
+    @for (int i = 1; i <= Model.PageCount(); i++)
+    {
+        <li class="@(i == Model.CurrentPage ? "page-item active" : "page-item")">
+            <a class="page-link" href="@Url.Action("GetBillersAsync","Home", new { page = i })">@i</a>
+        </li>
+    }
+
+    <li class="@(Model.CurrentPage == Model.PageCount() ? "page-item disabled" : "page-item active")">
+        <a class="page-link" href="@Url.Action("GetBillersAsync","Home", new { page = Model.CurrentPage + 1 })">Next</a>
+    </li>
+</ul>
+
+

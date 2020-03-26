@@ -1,0 +1,60 @@
+﻿@model ISWAPIImplementation.Models.BillPaymentPayload
+
+@{
+    ViewData["Title"] = "SendBillPaymentAdvice";
+}
+
+<h1>SendBillPaymentAdvice</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SendBillPaymentAdvice" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="terminalId" class="control-label"></label>
+                <input asp-for="terminalId" class="form-control" />
+                <span asp-validation-for="terminalId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="paymentCode" class="control-label"></label>
+                <input asp-for="paymentCode" class="form-control" />
+                <span asp-validation-for="paymentCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="customerId" class="control-label"></label>
+                <input asp-for="customerId" class="form-control" />
+                <span asp-validation-for="customerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="customerMobile" class="control-label"></label>
+                <input asp-for="customerMobile" class="form-control" />
+                <span asp-validation-for="customerMobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="customerEmail" class="control-label"></label>
+                <input asp-for="customerEmail" class="form-control" />
+                <span asp-validation-for="customerEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="amount" class="control-label"></label>
+                <input asp-for="amount" class="form-control" />
+                <span asp-validation-for="amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="requestReference" class="control-label"></label>
+                <input asp-for="requestReference" value="@ViewBag.Ref" hidden="hidden" class="form-control" />
+                <span asp-validation-for="requestReference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Post" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
